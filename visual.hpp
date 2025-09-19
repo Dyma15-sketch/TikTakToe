@@ -3,6 +3,6 @@
 
 class Painter {
 public:
-    void DrawBoard(const Board& board);         
-    void ShowMessage( const char* message);      
+    void DrawBoard( Board& board);         
+    void ShowMessage(  char* message);      
 };

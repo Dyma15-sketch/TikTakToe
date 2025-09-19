@@ -10,8 +10,8 @@ public:
     GameEngine();                     
     void Init();                        
     bool MakeMove(int row, int col);     
-    Player GetCurrentPlayer() const;     
+    Player GetCurrentPlayer() ;     
     void SwitchTurn();                  
-    Player CheckWinner() const;          
-    const Board& GetBoard() const;       
+    Player CheckWinner() ;          
+    Board& GetBoard() ;       
 };

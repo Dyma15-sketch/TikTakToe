@@ -3,6 +3,6 @@
 
 class Rules {
 public:
-    static bool CheckWin(const Board& board, Player player); 
-    static bool CheckDraw(const Board& board);               
+    static bool CheckWin( Board& board, Player player); 
+    static bool CheckDraw( Board& board);               
 };
