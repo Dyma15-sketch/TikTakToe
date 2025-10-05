@@ -1,20 +1,67 @@
-# Tik-Tak-Toe
+# TikTakToe
+
+**TikTakToe** este un joc simplu de strategie în care jucătorul concurează împotriva unui adversar într-un meci de X și 0 pe o grilă 3x3.  
+Scopul jocului este de a completa trei celule consecutiv — vertical, orizontal sau diagonal — pentru a câștiga partida.  
+Dacă niciunul dintre jucători nu reușește acest lucru, jocul se încheie la egalitate.
+
+---
+
+## Instrucțiuni de construire
+
+Pentru început, am deschis **Git Bash**, am accesat locația proiectului și am executat următoarele comenzi pentru a mă asigura că am ultimele modificări din ramura principală și pentru a crea o nouă ramură pentru laboratorul 2:
+
+```bash
+# selectarea ramurii principale
+git checkout main
+
+# obținerea ultimelor modificări
+git pull
+
+# crearea și comutarea pe o nouă ramură
+git checkout -B lab02
+
+```
+ Am creat fișiere sursă .cpp corespunzătoare fiecărui fișier antet .hpp, unde fiecare fișier .cpp conține implementarea metodelor definite în fișierele header. La final, am creat fișierul main.cpp, care conține punctul de intrare al aplicației.
+
+Pentru compilare, am folosit MINGW64, am creat fișierul Makefile cu comenzile care vor crea fișierele obiect si aplicația (TikTakToe.exe) folosind urmatoarele comenzi în MINGW64:
+
+```bash
+make clean
+make
+```
+Pentru o mai bună organizare, am creat următoarele directoare:
+
+ * include/ – conține fișierele .hpp
+
+ * src/ – conține fișierele .cpp
+
+ * obj/ – conține fișierele obiect .o
+
+
+ Am creat un fișier .gitignore pentru a exclude din controlul versiunilor fișierele generate automat în timpul compilării, precum:
+ * .exe
+ * .o
+
+ Pentru a adăuga, comite și publica modificările în depozitul remote, am executat următoarele comenzi:
+
+ ```bash
+ # adaugă toate fișierele pentru urmărire
+git add *
+
+# verifică starea fișierelor
+git status
+
+# creează un commit
+git commit -m "first compilation"
+
+# publică commit-ul în depozitul remote
+git push
+```
 
 
 
 
-### TikTakToe is a simple strategy game where the player plays aganist an opponent in a match of Tic Tac Toe on 3x3 grid. The player must fill 3 grids vertically, horizontally or diagonally in order to win, otherwise, the opponent will beat the player or the game will end in a draw. 
 
-### In "point.hpp", Point holds the coordonates of the placement of x/0 on the columns/rows.
 
-### In "player.hpp", the enum class Player is used to determine if the players participating are either X or 0.
 
-### In "board.hpp" that includes "player.hpp", class Board includes esential elements for the board. Inside the class,  the "Player cells" creates the cells, Board() creates the new board with the cells being empty,   PlaceMark() check the coordonates on the grid and returns true if the cell is empty or false if the cell is filled by one of the players,  GetCell() returns the value of the cell whatever its X,0 or nothing,  IsFull checks if the entire grid is filled or not and Reset() empties the enitre grid once the match is over.
 
-### In "rules.hpp", inside class Rules, CheckWin() will check the end result of the match if one of the players won and CheckDraw() will verify if the match ended in a draw.
-
-### In "game_engine.hpp", which handles the logic of the game and includes player,board and rules.hpp files, Init() starts or restarts the game, MakeMove() checks if the player made a valid move on the grid, GetCurrentPlayer() checks what player is taking their turn, SwitchTurn() switches the turn to the other player, CheckWinner() checks which player won or if anyone won in the first place and GetBoard() gives a read-only acces to the board.
-
-### In "visual.hpp", where the game sends visual feedback for the game, DrawBoard() shows the grid and ShowMessage() shows the results of the match.
- 
- 
