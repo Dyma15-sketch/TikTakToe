@@ -3,23 +3,29 @@ all: TikTakToe
 TikTakToe: player.o board.o rules.o game_engine.o visual.o main.o
 	g++ -o TikTakToe.exe player.o board.o rules.o game_engine.o visual.o main.o
 
-player.o:
-	g++ player.cpp -o player.o -c
+INCLUDES = -Iinclude
 
-board.o:
-	g++ board.cpp -o board.o -c
+player.o: src/player.cpp
+	g++ $(INCLUDES) src/player.cpp -o player.o -c
 
-rules.o:
-	g++ rules.cpp -o rules.o -c
 
-game_engine.o:
-	g++ game_engine.cpp -o game_engine.o -c
 
-visual.o:
-	g++ visual.cpp -o visual.o -c
+board.o: src/board.cpp
+	g++ $(INCLUDES) src/board.cpp -o board.o -c
 
-main.o:
-	g++ main.cpp -o main.o -c
+rules.o: src/rules.cpp
+	g++ $(INCLUDES) src/rules.cpp -o rules.o -c
+
+game_engine.o: src/game_engine.cpp
+	g++ $(INCLUDES) src/game_engine.cpp -o game_engine.o -c
+
+visual.o: src/visual.cpp
+	g++ $(INCLUDES) src/visual.cpp -o visual.o -c
+
+main.o: src/main.cpp
+	g++ $(INCLUDES) src/main.cpp -o main.o -c
+
+	
 
 clean:
 	rm -f *.o *.exe

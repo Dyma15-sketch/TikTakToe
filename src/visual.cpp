@@ -1,5 +1,11 @@
-#include "visual.hpp"
+#include "Visual.hpp"
+#include <iostream>
 
-void Painter::DrawBoard(Board board) {}
+void Visual::DrawBoard(const Board& board) const {
+    std::cout << board;
+}
 
-void Painter::ShowMessage(char* message) {}
+void Visual::ShowMessage(const std::string& message) const {
+    std::cout << message << std::endl;
+}
+

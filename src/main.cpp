@@ -4,7 +4,7 @@
 
 int main() {
     GameEngine game;
-    Painter painter;
+    Visual visual;
         
     return 0;
 }

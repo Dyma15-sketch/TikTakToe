@@ -1,8 +1,8 @@
 #pragma once
-#include "board.hpp"
+#include "abstract_visual.hpp"
 
-class Painter {
+class Visual : public AbstractVisual {
 public:
-    void DrawBoard( Board board);         
-    void ShowMessage(  char* message);      
+    void DrawBoard(const Board& board) const override;
+    void ShowMessage(const std::string& message) const override;
 };
