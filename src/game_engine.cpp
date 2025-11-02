@@ -1,66 +1,115 @@
-#include "game_engine.hpp"
+#include <iostream>
+#include <memory>
+#include <algorithm>
+#include <string>
+#include "GameEngine.hpp"
+#include "Board.hpp"
+#include "Rules.hpp"
+#include "Player.hpp"
 
+class GameEngine {
+private:
+    std::shared_ptr<Board> board;     
+    std::shared_ptr<Player> currentPlayer; 
+    std::shared_ptr<Rules> rules;     
 
-GameEngine::GameEngine() {
-    Init();
-}
-
-GameEngine::GameEngine(const Board& b, const Player& startingPlayer)
-    : board(b), currentPlayer(startingPlayer) {}
-
-
-GameEngine::GameEngine(const GameEngine& other)
-    : board(other.board), currentPlayer(other.currentPlayer) {}
-
-
-GameEngine& GameEngine::operator=(const GameEngine& other) {
-    if (this != &other) {
-        board = other.board;
-        currentPlayer = other.currentPlayer;
+public:
+    // Constructor implicit
+    GameEngine() {
+        Init();
     }
-    return *this;
-}
 
+    // Constructor cu parametri
+    GameEngine(const Board& b, const Player& startingPlayer)
+        : board(std::make_shared<Board>(b)),
+          currentPlayer(std::make_shared<Player>(startingPlayer)),
+          rules(std::make_shared<Rules>(*board)) {}
 
-bool GameEngine::operator==(const GameEngine& other) const {
-    return (board == other.board && currentPlayer == other.currentPlayer);
-}
+    // Constructor de copiere
+    GameEngine(const GameEngine& other)
+        : board(std::make_shared<Board>(*other.board)),
+          currentPlayer(std::make_shared<Player>(*other.currentPlayer)),
+          rules(std::make_shared<Rules>(*other.rules)) {}
 
+    // Operator de atribuire
+    GameEngine& operator=(const GameEngine& other) {
+        if (this != &other) {
+            board = std::make_shared<Board>(*other.board);
+            currentPlayer = std::make_shared<Player>(*other.currentPlayer);
+            rules = std::make_shared<Rules>(*other.rules);
+        }
+        return *this;
+    }
 
-bool GameEngine::operator!=(const GameEngine& other) const {
-    return !(*this == other);
-}
+    // Operator de egalitate
+    bool operator==(const GameEngine& other) const {
+        return *board == *other.board && *currentPlayer == *other.currentPlayer;
+    }
 
+    // Operator de iesire
+    friend std::ostream& operator<<(std::ostream& os, const GameEngine& engine) {
+        os << "=== Starea Jocului ===\n";
+        os << "Jucător curent: " << *engine.currentPlayer << "\n";
+        os << *engine.board;
+        return os;
+    }
 
-std::ostream& operator<<(std::ostream& os, const GameEngine& engine) {
-    os << "Jucător curent: " << engine.currentPlayer << "\n";
-    os << engine.board;
-    return os;
-}
+    // Operator de intrare
+    friend std::istream& operator>>(std::istream& is, GameEngine& engine) {
+        std::cout << "Introduceți tabla de joc (3x3):\n";
+        is >> *engine.board;
+        std::cout << "Introduceți jucătorul curent (X, O, None): ";
+        is >> *engine.currentPlayer;
+        return is;
+    }
 
+    // Initializeaza jocul
+    void Init() {
+        board = std::make_shared<Board>();
+        currentPlayer = std::make_shared<Player>(PlayerType::X);
+        rules = std::make_shared<Rules>(*board);
+    }
 
-std::istream& operator>>(std::istream& is, GameEngine& engine) {
-    std::cout << "Introduceți tabla de joc:\n";
-    is >> engine.board;
-    std::cout << "Introduceți jucătorul curent (X, O sau None): ";
-    is >> engine.currentPlayer;
-    return is;
-}
+    // Face o mutare pe tabla de joc
+    bool MakeMove(int row, int col) {
+        if (board->PlaceMark(row, col, *currentPlayer)) {
+            SwitchTurn();
+            return true;
+        }
+        return false;
+    }
 
+    // Obtine jucatorul curent
+    Player GetCurrentPlayer() const {
+        return *currentPlayer;
+    }
 
-void GameEngine::Init() {
-    board.Reset();
-    currentPlayer = Player(PlayerType::X);
-}
+    // Schimba tura jucătorului
+    void SwitchTurn() {
+        if (currentPlayer->GetType() == PlayerType::X)
+            currentPlayer->SetType(PlayerType::O);
+        else if (currentPlayer->GetType() == PlayerType::O)
+            currentPlayer->SetType(PlayerType::X);
+    }
 
-bool GameEngine::MakeMove(int row, int col) {}
-Player GameEngine::GetCurrentPlayer() const {
-    return currentPlayer;
-}
+    // Verifica cine e castigatorul
+    Player CheckWinner() const {
+        if (rules->CheckWin(Player(PlayerType::X)))
+            return Player(PlayerType::X);
+        if (rules->CheckWin(Player(PlayerType::O)))
+            return Player(PlayerType::O);
+        return Player(PlayerType::None);
+    }
 
-void GameEngine::SwitchTurn() {}
-Player GameEngine::CheckWinner() {}
-Board GameEngine::GetBoard() const {
-    return board;
-}
+    // Verifica remiza
+    bool IsDraw() const {
+        return rules->CheckDraw();
+    }
+
+    // Returneaza tabla curenta
+    Board GetBoard() const {
+        return *board;
+    }
+};
+
 
