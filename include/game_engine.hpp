@@ -10,13 +10,19 @@ private:
     Player currentPlayer;
 
 public:
+    
     GameEngine();
+
     GameEngine(const Board& b, const Player& startingPlayer);
+
     GameEngine(const GameEngine& other);
+
     GameEngine& operator=(const GameEngine& other);
+
     bool operator==(const GameEngine& other) const;
-    bool operator!=(const GameEngine& other) const;
+
     friend std::ostream& operator<<(std::ostream& os, const GameEngine& engine);
+    
     friend std::istream& operator>>(std::istream& is, GameEngine& engine);
 
 
