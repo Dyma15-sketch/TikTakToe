@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/user/TikTakToe/build/cmake_install.cmake",
+		"C:/Users/user/TikTakToe/build/libTikTakToe/cmake_install.cmake",
+		"C:/Users/user/TikTakToe/build/app/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
