@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/user/TikTakToe",
-      "program": "c:/Users/user/TikTakToe/build/Debug/outDebug",
+      "cwd": "c:/Users/user/TikTakToe/src",
+      "program": "c:/Users/user/TikTakToe/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
