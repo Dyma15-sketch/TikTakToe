@@ -1,9 +1,0 @@
-# ninja log v7
-7	718	7850160186055171	libTikTakToe/CMakeFiles/TikTakToe.dir/src/player.cpp.obj	33a9c30623f688b8
-25	792	7850160186247321	libTikTakToe/CMakeFiles/TikTakToe.dir/src/rules.cpp.obj	47cfd2fb06085e8f
-33	845	7850160186335794	libTikTakToe/CMakeFiles/TikTakToe.dir/src/game_engine.cpp.obj	90b5cb3754737f3d
-52	1151	7850160186525328	app/CMakeFiles/TikTakToeApp.dir/src/visual.cpp.obj	1a4cd9a14bd7e557
-17	1215	7850160186169061	libTikTakToe/CMakeFiles/TikTakToe.dir/src/board.cpp.obj	d80009d3267ff35b
-109	343	7850161295648520	libTikTakToe/libTikTakToe.a	c09f33d4953dc3c9
-126	1256	7850161295826595	app/CMakeFiles/TikTakToeApp.dir/src/main.cpp.obj	297e9cf19b7599fb
-1317	1665	7850161307737827	app/TikTakToeApp.exe	ba153f592d75a695

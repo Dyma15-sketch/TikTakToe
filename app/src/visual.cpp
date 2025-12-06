@@ -64,5 +64,5 @@ void Visual::DrawBoardSFML(const Board& board) const {
 #endif
 }
 
-} 
+}
 

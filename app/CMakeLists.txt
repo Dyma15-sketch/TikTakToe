@@ -22,3 +22,4 @@ if (SFML_FOUND)
 endif()
 
 target_compile_features(TikTakToeApp PRIVATE cxx_std_17)
+
